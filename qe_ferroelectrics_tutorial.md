@@ -141,7 +141,7 @@ The University of Utah's **Center for High Performance Computing (CHPC)** provid
 From your laptop terminal:
 
 ```bash
-ssh YourUNID@notchpeak.chpc.utah.edu
+ssh YourUNID@kingspeak.chpc.utah.edu
 ```
 
 Replace `YourUNID` with your University of Utah ID. You'll be prompted for your campus password and likely a Duo 2FA push. After login you are on a **login node** — this is shared with every other user and is for editing files and submitting jobs, **not for running calculations**. Never run `pw.x` directly on a login node.
@@ -163,20 +163,20 @@ Set up an SSH key so you don't retype your password every time.
 ```bash
 # On your laptop:
 ssh-keygen -t ed25519          # press Enter to accept defaults; add a passphrase
-ssh-copy-id YourUNID@notchpeak.chpc.utah.edu
+ssh-copy-id YourUNID@kingspeak.chpc.utah.edu
 ```
 
 ### Transferring files
 
 Small files — use `scp`:
 ```bash
-scp local_file.txt YourUNID@notchpeak.chpc.utah.edu:~/tutorial/
-scp YourUNID@notchpeak.chpc.utah.edu:~/tutorial/scf.out ./
+scp local_file.txt YourUNID@kingspeak.chpc.utah.edu:~/tutorial/
+scp YourUNID@kingspeak.chpc.utah.edu:~/tutorial/scf.out ./
 ```
 
 Whole directories or big transfers — use `rsync` (resumes if interrupted):
 ```bash
-rsync -avP local_dir/ YourUNID@notchpeak.chpc.utah.edu:~/remote_dir/
+rsync -avP local_dir/ YourUNID@kingspeak.chpc.utah.edu:~/remote_dir/
 ```
 
 ### Exercise 2
@@ -313,8 +313,8 @@ Save this as `run_scf.slurm`:
 ```bash
 #!/bin/bash
 #SBATCH --job-name=scf_test
-#SBATCH --account=your_pi_allocation      # ASK YOUR PI for this
-#SBATCH --partition=notchpeak              # or kingspeak, lonepeak, etc.
+#SBATCH --account=sqiu                     # ASK YOUR PI for this
+#SBATCH --partition=kingspeak              # or kingspeak, lonepeak, etc.
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=32               # MPI ranks; match node core count
 #SBATCH --time=01:00:00                    # HH:MM:SS; under-request -> faster queue
@@ -331,7 +331,7 @@ cd $SLURM_SUBMIT_DIR
 mpirun pw.x -in scf.in > scf.out
 ```
 
-Replace `your_pi_allocation` and the module version with the real values your PI gives you.
+Replace `your_pi_allocation` and the module version with the real values your PI gives you. (sqiu)
 
 ### Submitting and monitoring
 
