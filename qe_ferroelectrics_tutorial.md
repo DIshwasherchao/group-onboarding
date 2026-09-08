@@ -316,7 +316,7 @@ Save this as `run_scf.slurm`:
 #SBATCH --account=sqiu                     # ASK YOUR PI for this
 #SBATCH --partition=kingspeak              # or kingspeak, lonepeak, etc.
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=32               # MPI ranks; match node core count
+#SBATCH --ntasks-per-node=16               # MPI ranks; match node core count
 #SBATCH --time=01:00:00                    # HH:MM:SS; under-request -> faster queue
 #SBATCH --mem=0                            # 0 = all memory on the node
 #SBATCH --output=slurm-%j.out              # %j = job ID
@@ -324,7 +324,8 @@ Save this as `run_scf.slurm`:
 
 # --- environment ---
 module purge
-module load quantumespresso/<version>      # use the exact name from Part 4
+module load intel-oneapi-compilers/2021.4.0 mvapich2/2.3.7 quantum-espresso/7.0
+
 
 # --- run ---
 cd $SLURM_SUBMIT_DIR
