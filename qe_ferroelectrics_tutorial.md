@@ -329,7 +329,7 @@ module load intel-oneapi-compilers/2021.4.0 mvapich2/2.3.7 quantum-espresso/7.0
 
 # --- run ---
 cd $SLURM_SUBMIT_DIR
-mpirun pw.x -in scf.in > scf.out
+mpirun -np $SLURM_NTASKS pw.x -inp input > output
 ```
 
 Replace `your_pi_allocation` and the module version with the real values your PI gives you. (sqiu)
